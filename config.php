@@ -26,7 +26,7 @@ return [
     'producao' => [
         // Preencha com o usuario e a senha criados no painel da hospedagem
         'host' => 'localhost',
-        'dbname' => 'u837023575_sis_validade',
+        'dbname' => '',
         'user' => '',
         'pass' => '',
     ],
