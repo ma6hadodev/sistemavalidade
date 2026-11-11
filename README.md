@@ -20,4 +20,3 @@ O grande diferencial deste projeto é a automação de notificações: o sistema
 ## 👨‍💻 Desenvolvedor
 **Mateus de Sousa Machado**
 - GitHub: [@ma6hadodev](https://github.com/ma6hadodev)
-- LinkedIn: [Seu Link Aqui]
