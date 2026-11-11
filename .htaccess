@@ -1,0 +1,48 @@
+# ==========================================================
+# Endurecimento básico do Apache (XAMPP / hospedagem Apache)
+# ==========================================================
+
+# Impede a listagem de diretórios
+<IfModule mod_autoindex.c>
+    Options -Indexes
+</IfModule>
+
+# Cabeçalhos de segurança contra XSS, clickjacking e sniffing
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+    Header unset X-Powered-By
+</IfModule>
+
+# Remove a assinatura do PHP nas respostas
+<IfModule mod_php.c>
+    php_flag expose_php Off
+</IfModule>
+
+# Bloqueia acesso direto a arquivos sensíveis (segredos, dumps, logs, backups)
+<FilesMatch "^(config\.php|telegram_token\.php|\.env|composer\.(json|lock)|.*\.(sql|log|ini|bak|old|db|sqlite|sh|md))$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# ==========================================================
+# Cron das notificações (opcional)
+# ----------------------------------------------------------
+# Só use se a hospedagem permitir agendamento por URL.
+# Gere antes uma chave longa e aleatória, descomente e ajuste:
+#
+# SetEnv CRON_SECRET "troque-por-uma-chave-longa-e-aleatoria"
+#
+# A URL agendada será:
+# https://seudominio.com/notificar_vencimentos.php?chave=troque-por-uma-chave-longa-e-aleatoria
+#
+# Se a hospedagem oferece cron por linha de comando, prefira:
+# 0 8 * * * /usr/bin/php /home/USUARIO/public_html/notificar_vencimentos.php
+# ==========================================================
