@@ -18,4 +18,4 @@ if (isset($_SERVER['SCRIPT_FILENAME']) && realpath((string) $_SERVER['SCRIPT_FIL
     exit;
 }
 
-return '9161921458:AAFz6U_nJ3XbooYvuMYF6cICDV8gx-hcJfI';
+return 'cole seu token aqui';
